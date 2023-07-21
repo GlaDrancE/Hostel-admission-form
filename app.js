@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
     .catch((err) => {
         console.error('Error connecting to MongoDB:', err.message);
     });
+mongoose.set('strictQuery', false);
 const HostelSchema = new mongoose.Schema({
     Student_Name: { type: String, required: true },
     Student_Year: { type: String, required: true },
