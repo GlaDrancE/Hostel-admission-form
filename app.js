@@ -43,10 +43,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
-app.get('/hostel-admission-form', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
 });
-app.post('/helloworld',(req, res) => {
+app.post('/submitted',(req, res) => {
     const formData = req.body
     const newAdmission = new HostelModel({
         Student_Name: formData.Student_Name,
@@ -77,8 +77,7 @@ app.post('/helloworld',(req, res) => {
         .catch((err) => {
             console.error('Error saving user:', err.message);
         });
-    console.log(formData)
-    res.json(formData)
+        res.redirect('https://www.gpsakoli.ac.in/')
 })
 app.listen(port, 'localhost', () => {
     console.log('Your App is running at port : ', port);
